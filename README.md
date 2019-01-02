@@ -38,3 +38,4 @@ here's a link to yahoo finance if you want to download the data: https://finance
 - [ ] Tensorflow
 - [ ] Math
 - [ ] Pandas
+
