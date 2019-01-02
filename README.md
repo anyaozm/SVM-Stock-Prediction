@@ -16,3 +16,25 @@ Any stock in a similar data formatting can be used to replace the stock used in 
 
 here's a link to yahoo finance if you want to download the data: https://finance.yahoo.com/quote/ISCTR.IS?p=ISCTR.IS&.tsrc=fin-srch
 
+
+## STEPS
+- [x] Import dependencies
+- [x] Load Training Features Data
+- [x] Turn data into a pandas data frame and Display
+- [x] Replace the strings in thal column with corresponding numbers
+- [x] Turn features into numpy arrays  
+- [x] Check shape
+- [x] Split the model 
+- [x] Build the Model
+- [x] Compile
+- [x] Fit and train
+- [x] Let's Evaluate Our Model with the loss function and accuracy
+
+## Dependensies 
+- [ ] Numpy
+- [ ] Matplotlib(IF YOU WANT TO display trends, I put a # on them to help with processing speed)
+- [ ] Scikit Learn
+- [ ] Keras
+- [ ] Tensorflow
+- [ ] Math
+- [ ] Pandas
