@@ -1,41 +1,25 @@
 # SVM Stock Prediction
 
-Support Vector Machine Stock Market Prediction 
+An educational support vector regression example using daily stock prices. The original notebook is preserved as a historical artifact in `ISBANK_SVM.ipynb`; the runnable implementation is `svm_stock_prediction.py`.
 
-![alt text](https://cdn-images-1.medium.com/max/1600/1*Ftns0ebfUHJDdpWt3Wvp-Q.png)
+## Run it
 
-For further information on SVM models you can read this great post by Savan Patel on medium.com.
-The Link to learn more: https://medium.com/machine-learning-101/chapter-2-svm-support-vector-machine-theory-f0812effc72
+1. Download historical daily data as a CSV from [Yahoo Finance](https://finance.yahoo.com/quote/ISCTR.IS/history/) or another source with `Date`, `Open`, `High`, `Low`, `Close`, and `Volume` columns. `Adj Close` is optional. The example originally used ISCTR.IS on Borsa Istanbul.
+2. Install dependencies: `python -m pip install -r requirements.txt`
+3. Run: `python svm_stock_prediction.py --csv path/to/ISCTR.csv --horizon 5`
 
-Stocks are believed by some to have patterns that can be identified with machine learning that repeat over time when fit to a vector. I used a support vector to forecast Stock adjusted close prices in the future for an emerging market 
+The script prints JSON with holdout mean absolute error, a last-close baseline, R², and estimates for the next five trading rows. It never downloads market data or places trades.
 
-I used a stock named ISCTR.IS in BIST 100.
-The data I used was pulled from Yahoo Finance
+## Changes from the original notebook
 
-Any stock in a similar data formatting can be used to replace the stock used in the demo
+- Removed the hard-coded path to one computer and the retired `sklearn.cross_validation` import.
+- Corrected the `Open` to `Close` change feature, which was always zero in the notebook.
+- Replaced the random train/test split with a chronological split and a horizon-sized gap between training targets and test dates.
+- Fit the feature scaler only on training data during evaluation to prevent look-ahead leakage.
+- Reported mean absolute error against a simple baseline. R² alone is easy to misread as “accuracy.”
 
-here's a link to yahoo finance if you want to download the data: https://finance.yahoo.com/quote/ISCTR.IS?p=ISCTR.IS&.tsrc=fin-srch
+Run `python -m unittest discover -s tests` to check data preparation and holdout behavior.
 
+## Limits
 
-## STEPS
-- [x] Import dependencies
-- [x] Load Training Features Data
-- [x] Turn data into a pandas data frame and Display
-- [x] Replace the strings in thal column with corresponding numbers
-- [x] Turn features into numpy arrays  
-- [x] Check shape
-- [x] Split the model 
-- [x] Build the Model
-- [x] Compile
-- [x] Fit and train
-- [x] Let's Evaluate Our Model with the loss function and accuracy
-
-## Dependensies 
-- [ ] Numpy
-- [ ] Matplotlib(IF YOU WANT TO display trends, I put a # on them to help with processing speed)
-- [ ] Scikit Learn
-- [ ] Keras
-- [ ] Tensorflow
-- [ ] Math
-- [ ] Pandas
-
+This is a demonstration, not an investment recommendation or a validated trading strategy. One historical holdout does not establish future performance. Market regimes change, adjusted price data can be revised, and a model that misses the simple baseline should not be treated as useful. The estimates have no confidence interval and do not include transaction costs or market holidays.
